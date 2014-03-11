@@ -13,9 +13,10 @@
   "keywords": [
     "nodebb",
     "plugin",
-    "badges",
+    "featured",
+    "threads",
     "topic",
-    "labels"
+    "widget"
   ],
   "author": {
     "name": "psychobunny",
