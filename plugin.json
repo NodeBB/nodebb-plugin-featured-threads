@@ -1,0 +1,29 @@
+{
+	"id": "nodebb-plugin-featured-threads",
+	"name": "Featured Threads & Widget for NodeBB",
+	"description": "Allows admins to feature multiple threads and display on your NodeBB forum as a widget.",
+	"url": "https://github.com/psychobunny/nodebb-plugin-featured-threads",
+	"library": "./library.js",
+	"hooks": [
+		{
+			"hook": "filter:scripts.get", "method": "addScripts", "callbacked": true
+		},
+		{
+			"hook": "filter:topic.thread_tools", "method": "addThreadTools", "callbacked": true
+		},
+		{
+			"hook": "action:app.load", "method": "init", "callbacked": true
+		},
+		{
+			"hook": "filter:widgets.getWidgets", "method": "defineWidgets", "callbacked": true
+		},
+		{
+			"hook": "filter:widget.render:featuredTopics", "method": "renderFeaturedTopics", "callbacked": true
+		}
+	],
+	"staticDir": "./public",
+	"templates": "./templates",
+	"css": [
+		"css/main.css"
+	]
+}
