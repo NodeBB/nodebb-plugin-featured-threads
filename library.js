@@ -14,7 +14,6 @@
 		data = data || {};
 
 		db.getListRange('featured:tids', 0, -1, function(err, tids) {
-			console.log(tids);
 			if (data.tid) {
 				if (tids.indexOf(data.tid) === -1) {
 					db.listAppend('featured:tids', data.tid);
@@ -63,7 +62,6 @@
 					next(err);
 				});
 			}, function(err) {
-				console.log(featuredTopics);
 				app.render('widgets/featured-topics-4x1', {topics:featuredTopics}, callback);
 			});
 			
