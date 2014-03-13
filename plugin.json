@@ -18,7 +18,10 @@
 			"hook": "filter:widgets.getWidgets", "method": "defineWidgets", "callbacked": true
 		},
 		{
-			"hook": "filter:widget.render:featuredTopics", "method": "renderFeaturedTopics", "callbacked": true
+			"hook": "filter:widget.render:featuredTopics4x1", "method": "renderFeaturedTopics4x1", "callbacked": true
+		},
+		{
+			"hook": "filter:widget.render:featuredTopicsSidebar", "method": "renderFeaturedTopicsSidebar", "callbacked": true
 		}
 	],
 	"staticDir": "./public",
