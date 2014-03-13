@@ -39,6 +39,63 @@
 	</div>
 	<!-- END topics -->
 </div>
+
 <script type="text/javascript">
-$('span.timeago').timeago();
+(function() {
+	$('span.timeago').timeago();
+
+	var featuredThreadsWidget = app.widgets.featuredThreadsWidget;
+
+	var numPosts = parseInt('{numPostsPerTopic}', 10); // TODO replace with setting from widget
+	numPosts = numPosts || 8;
+
+	if (!featuredThreadsWidget) {
+		featuredThreadsWidget = {};
+		featuredThreadsWidget.onNewPost = function(data) {
+			var tid;
+			if(data && data.posts && data.posts.length) {
+				tid = data.posts[0].tid;
+			}
+
+			var insertBefore = $('.home .category-item[data-tid="' + tid + '"] .post-preview').first();
+			var recentPosts = $('.home .category-item[data-tid="' + tid + '"] .post-preview');
+			if (!insertBefore.length) {
+				return;
+			}
+
+			parseAndTranslate(data.posts, function(html) {
+				html.hide()
+					.insertBefore(insertBefore)
+					.fadeIn();
+
+				app.createUserTooltips();
+				if (recentPosts.children().length > numPosts) {
+					recentPosts.children().last().remove();
+				}
+			});
+		}
+
+		app.widgets.featuredThreads = featuredThreadsWidget;
+		socket.on('event:new_post', app.widgets.featuredThreads.onNewPost);
+	}
+
+	function parseAndTranslate(posts, callback) {
+		templates.preload_template('featured-topics-4x1', function() {
+
+			templates['featured-topics-4x1'].parse({topics:[]});
+
+			var html = templates.prepare(templates['featured-topics-4x1'].blocks['posts']).parse({
+				posts: posts
+			});
+
+			translator.translate(html, function(translatedHTML) {
+				translatedHTML = $(translatedHTML);
+				translatedHTML.find('img').addClass('img-responsive');
+				translatedHTML.find('span.timeago').timeago();
+				callback(translatedHTML);
+			});
+		});
+	}
+}());
+
 </script>
