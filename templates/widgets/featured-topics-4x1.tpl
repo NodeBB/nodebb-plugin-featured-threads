@@ -5,9 +5,11 @@
 
 		<div class="category-icon">
 			<a style="color: {topics.category.color};" href="{relative_path}/topic/{topics.slug}" itemprop="url">
-				<div class="category-header" style="background: {topics.category.bgColor}; color: {topics.category.color};">
+				<div class="category-header" style="color: {topics.category.color}; background: url({topics.thumb}); background-color: {topics.category.bgColor};">
 					<span class="badge">{topics.postcount} </span>
+					<!-- IF !topics.thumb -->
 					<div><i class="fa {topics.category.icon} fa-4x"></i></div>
+					<!-- ENDIF !topics.thumb -->
 				</div>
 			</a>
 
