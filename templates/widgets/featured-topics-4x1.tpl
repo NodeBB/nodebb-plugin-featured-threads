@@ -83,5 +83,3 @@
 }());
 
 </script>
-
-templates.preload_template('widgets/featured-topics/posts', function() {});
