@@ -18,22 +18,7 @@
 					<h4><i class="fa {topics.category.icon} visible-xs-inline"></i> {topics.title}</h4>
 				</a>
 				<div class="description" itemprop="description">by {topics.user.username}</div>
-				<!-- BEGIN posts -->
-				<div class="post-preview clearfix">
-					<a style="color: {topics.category.color};" href="./user/{topics.posts.userslug}">
-						<img src="{topics.posts.picture}" title="{topics.posts.username}" class="pull-left user-img" />
-					</a>
-
-					<p>
-						<strong>{topics.posts.username}</strong><br/>
-						{topics.posts.content}
-					</p>
-					<span class="pull-right">
-						<a href="topic/{topics.posts.topic.slug}#{topics.posts.pid}">posted</a>
-						<span class="timeago" title="{topics.posts.relativeTime}"></span>
-					</span>
-				</div>
-				<!-- END posts -->
+				<!-- IMPORT widgets/featured-topics/posts.tpl -->
 			</div>
 		</div>
 	</div>
@@ -80,12 +65,11 @@
 	}
 
 	function parseAndTranslate(posts, callback) {
-		templates.preload_template('featured-topics-4x1', function() {
-
-			templates['featured-topics-4x1'].parse({topics:[]});
-
-			var html = templates.prepare(templates['featured-topics-4x1'].blocks['posts']).parse({
-				posts: posts
+		templates.preload_template('widgets/featured-topics/posts', function() {
+			var html = templates['widgets/featured-topics/posts'].parse({
+				topics: {
+					posts: posts
+				}
 			});
 
 			translator.translate(html, function(translatedHTML) {
@@ -99,3 +83,5 @@
 }());
 
 </script>
+
+templates.preload_template('widgets/featured-topics/posts', function() {});
