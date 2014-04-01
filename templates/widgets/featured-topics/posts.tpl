@@ -5,7 +5,7 @@
 					</a>
 
 					<p>
-						<strong>{topics.posts.username}</strong><br/>
+						<strong>{topics.posts.user.username}</strong><br/>
 						{topics.posts.content}
 					</p>
 					<span class="pull-right">

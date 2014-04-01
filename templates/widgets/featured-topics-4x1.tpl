@@ -5,7 +5,7 @@
 
 		<div class="category-icon">
 			<a style="color: {topics.category.color};" href="{relative_path}/topic/{topics.slug}" itemprop="url">
-				<div class="category-header" style="color: {topics.category.color}; background: url({topics.thumb}); background-color: {topics.category.bgColor};">
+				<div class="category-header category-header-image-cover" style="color: {topics.category.color}; background: url({topics.thumb}); background-color: {topics.category.bgColor};">
 					<span class="badge">{topics.postcount} </span>
 					<!-- IF !topics.thumb -->
 					<div><i class="fa {topics.category.icon} fa-4x"></i></div>
@@ -29,7 +29,7 @@
 (function() {
 	$('span.timeago').timeago();
 
-	var featuredThreadsWidget = app.widgets.featuredThreadsWidget;
+	var featuredThreadsWidget = app.widgets.featuredThreads;
 
 	var numPosts = parseInt('{numPostsPerTopic}', 10); // TODO replace with setting from widget
 	numPosts = numPosts || 8;
@@ -42,8 +42,10 @@
 				tid = data.posts[0].tid;
 			}
 
-			var insertBefore = $('.home .category-item[data-tid="' + tid + '"] .post-preview').first();
-			var recentPosts = $('.home .category-item[data-tid="' + tid + '"] .post-preview');
+			var category = $('.home .category-item[data-tid="' + tid + '"]');
+			var recentPosts = category.find('.post-preview');
+			var insertBefore =  recentPosts.first();
+
 			if (!insertBefore.length) {
 				return;
 			}
@@ -54,8 +56,8 @@
 					.fadeIn();
 
 				app.createUserTooltips();
-				if (recentPosts.children().length > numPosts) {
-					recentPosts.children().last().remove();
+				if (category.find('.post-preview').length > numPosts) {
+					recentPosts.last().remove();
 				}
 			});
 		}
