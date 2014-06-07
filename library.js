@@ -53,18 +53,16 @@
 	};
 
 	Plugin.renderFeaturedTopics4x1 = function(widget, callback) {
-		var uid = 0;//todo
-
 		getFeaturedTopics(null, function(err, featuredTopics) {
 			async.each(featuredTopics, function(topic, next) {
-				topics.getTopicPosts(topic.tid, 0, 4, uid, true, function(err, posts) {
+				topics.getTopicPosts(topic.tid, 'tid:' + topic.tid + ':posts', 0, 4, widget.uid, true, function(err, posts) {
 					topic.posts = posts;
 					next(err);
 				});
 			}, function(err) {
 				app.render('widgets/featured-topics-4x1', {topics:featuredTopics}, callback);
 			});
-			
+
 		});
 	};
 
