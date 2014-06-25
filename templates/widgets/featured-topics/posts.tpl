@@ -9,7 +9,7 @@
 						{topics.posts.content}
 					</p>
 					<span class="pull-right">
-						<a href="topic/{topics.posts.topic.slug}#{topics.posts.pid}">posted</a>
+						<a href="topic/{topics.slug}#{topics.posts.pid}">posted</a>
 						<span class="timeago" title="{topics.posts.relativeTime}"></span>
 					</span>
 				</div>
