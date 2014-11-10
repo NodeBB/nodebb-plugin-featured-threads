@@ -10,7 +10,7 @@
         db = module.parent.require('./database.js'),
         app;
 
-    function getFeaturedTopics(data, callback) {
+    function getFeaturedTopics(uid, data, callback) {
 		data = data || {};
 
 		db.getListRange('featured:tids', 0, -1, function(err, tids) {
@@ -21,7 +21,7 @@
 				}
 			}
 
-			topics.getTopicsByTids(tids, 0, callback);
+			topics.getTopicsByTids(tids, uid, callback);
 		});
     }
 
@@ -29,7 +29,7 @@
 		app = expressApp;
 
 		SocketTopics.getFeaturedTopics = function(socket, data, callback) {
-			getFeaturedTopics(data, callback);
+			getFeaturedTopics(socket.uid, data, callback);
 		};
 
 		SocketTopics.setFeaturedTopics = function(socket, data, callback) {
@@ -47,13 +47,13 @@
     };
 
     Plugin.renderFeaturedTopicsSidebar = function(widget, callback) {
-		getFeaturedTopics(null, function(err, featuredTopics) {
+		getFeaturedTopics(widget.uid, null, function(err, featuredTopics) {
 			app.render('widgets/featured-topics-sidebar', {topics:featuredTopics}, callback);
 		});
 	};
 
 	Plugin.renderFeaturedTopics4x1 = function(widget, callback) {
-		getFeaturedTopics(null, function(err, featuredTopics) {
+		getFeaturedTopics(widget.uid, null, function(err, featuredTopics) {
 			async.each(featuredTopics, function(topic, next) {
 				topics.getTopicPosts(topic.tid, 'tid:' + topic.tid + ':posts', 0, 4, widget.uid, true, function(err, posts) {
 					topic.posts = posts;
