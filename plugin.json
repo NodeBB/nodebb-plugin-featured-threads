@@ -6,22 +6,22 @@
 	"library": "./library.js",
 	"hooks": [
 		{
-			"hook": "filter:scripts.get", "method": "addScripts", "callbacked": true
+			"hook": "filter:scripts.get", "method": "addScripts"
 		},
 		{
-			"hook": "filter:topic.thread_tools", "method": "addThreadTools", "callbacked": true
+			"hook": "filter:topic.thread_tools", "method": "addThreadTools"
 		},
 		{
-			"hook": "action:app.load", "method": "init", "callbacked": true
+			"hook": "action:app.load", "method": "init"
 		},
 		{
-			"hook": "filter:widgets.getWidgets", "method": "defineWidgets", "callbacked": true
+			"hook": "filter:widgets.getWidgets", "method": "defineWidgets"
 		},
 		{
-			"hook": "filter:widget.render:featuredTopics4x1", "method": "renderFeaturedTopics4x1", "callbacked": true
+			"hook": "filter:widget.render:featuredTopics4x1", "method": "renderFeaturedTopics4x1"
 		},
 		{
-			"hook": "filter:widget.render:featuredTopicsSidebar", "method": "renderFeaturedTopicsSidebar", "callbacked": true
+			"hook": "filter:widget.render:featuredTopicsSidebar", "method": "renderFeaturedTopicsSidebar"
 		}
 	],
 	"staticDir": "./public",
