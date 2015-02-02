@@ -44,6 +44,8 @@
 				});
 			});
 		};
+
+		callback(false);
     };
 
     Plugin.renderFeaturedTopicsSidebar = function(widget, callback) {
