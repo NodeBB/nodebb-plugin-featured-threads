@@ -6,13 +6,10 @@
 	"library": "./library.js",
 	"hooks": [
 		{
-			"hook": "filter:scripts.get", "method": "addScripts"
-		},
-		{
 			"hook": "filter:topic.thread_tools", "method": "addThreadTools"
 		},
 		{
-			"hook": "action:app.load", "method": "init"
+			"hook": "static:app.load", "method": "init"
 		},
 		{
 			"hook": "filter:widgets.getWidgets", "method": "defineWidgets"
@@ -26,7 +23,10 @@
 	],
 	"staticDir": "./public",
 	"templates": "./templates",
+	"scripts": [
+		"public/lib/main.js"
+	],
 	"css": [
-		"css/main.css"
+		"public/css/main.css"
 	]
 }

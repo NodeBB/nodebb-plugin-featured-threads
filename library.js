@@ -25,8 +25,8 @@
 		});
     }
 
-    Plugin.init = function(expressApp) {
-		app = expressApp;
+    Plugin.init = function(params, callback) {
+		app = params.router;
 
 		SocketTopics.getFeaturedTopics = function(socket, data, callback) {
 			getFeaturedTopics(socket.uid, data, callback);
@@ -64,11 +64,6 @@
 			});
 
 		});
-	};
-
-	Plugin.addScripts = function(scripts, callback) {
-		scripts.push('plugins/nodebb-plugin-featured-threads/lib/main.js');
-		callback(null, scripts);
 	};
 
 	Plugin.addThreadTools = function(threadTools, callback) {
