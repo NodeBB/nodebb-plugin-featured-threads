@@ -1,6 +1,6 @@
 {
   "name": "nodebb-plugin-featured-threads",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Featured Threads & Widget for NodeBB",
   "main": "library.js",
   "scripts": {
