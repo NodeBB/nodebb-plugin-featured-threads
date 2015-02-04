@@ -16,7 +16,7 @@
 		db.getListRange('featured:tids', 0, -1, function(err, tids) {
 			if (data.tid) {
 				if (tids.indexOf(data.tid) === -1) {
-					db.listAppend('featured:tids', data.tid);
+					db.listAppend('featured:tids', data.tid, function(){});
 					tids.push(data.tid);
 				}
 			}
