@@ -68,14 +68,14 @@
 		});
 	};
 
-	Plugin.addThreadTools = function(threadTools, callback) {
-		threadTools.push({
+	Plugin.addThreadTools = function(data, callback) {
+		data.tools.push({
 			"title": "Feature this thread",
 			"class": "mark-featured",
 			"icon": "fa-star-o"
 		});
 
-		callback(null, threadTools);
+		callback(null, data);
 	};
 
 	Plugin.defineWidgets = function(widgets, callback) {
