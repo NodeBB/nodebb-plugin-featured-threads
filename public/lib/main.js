@@ -6,7 +6,7 @@
 			if (data.url.match(/^topic/)) {
 				$('.thread-tools .mark-featured').on('click', function(ev) {
 					ajaxify.loadTemplate('modals/sort-featured-topics', function(featuredTpl) {
-						socket.emit('topics.getFeaturedTopics', {tid: ajaxify.variables.get('topic_id')}, function(err, topics) {
+						socket.emit('topics.getFeaturedTopics', {tid: ajaxify.data.tid}, function(err, topics) {
 							if (!err) {
 								bootbox.confirm(templates.parse(featuredTpl, {topics:topics}), function(confirm) {
 									var tids = [];
