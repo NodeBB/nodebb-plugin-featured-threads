@@ -26,7 +26,7 @@
 	"scripts": [
 		"public/lib/main.js"
 	],
-	"css": [
-		"public/css/main.css"
+	"less": [
+		"public/less/style.less"
 	]
 }

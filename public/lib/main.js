@@ -4,9 +4,9 @@
 	jQuery('document').ready(function() {
 		$(window).on('action:ajaxify.end', function(ev, data) {
 			if (data.url.match(/^topic/)) {
-				$('.thread-tools .mark-featured').on('click', function(ev) {
+				$('.topic').on('click', '.thread-tools .mark-featured', function(ev) {
 					ajaxify.loadTemplate('modals/sort-featured-topics', function(featuredTpl) {
-						socket.emit('topics.getFeaturedTopics', {tid: ajaxify.variables.get('topic_id')}, function(err, topics) {
+						socket.emit('topics.getFeaturedTopics', {tid: ajaxify.data.tid}, function(err, topics) {
 							if (!err) {
 								bootbox.confirm(templates.parse(featuredTpl, {topics:topics}), function(confirm) {
 									var tids = [];
@@ -26,6 +26,8 @@
 										$(this).parents('.panel').remove();
 									});
 								}, 500);
+							}else{
+								console.log(err);
 							}
 						});
 					});
