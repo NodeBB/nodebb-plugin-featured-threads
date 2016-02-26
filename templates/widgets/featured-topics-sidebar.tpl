@@ -2,9 +2,13 @@
 	<ul>
 		<!-- BEGIN topics -->
 		<li data-tid="{topics.tid}" class="clearfix">
-			<a href="{relative_path}/topic/{topics.user.slug}">
-				<img title="{topics.user.username}" class="img-rounded user-img" src="{topics.user.picture}" />
-			</a>
+
+			<!-- IF topics.user.picture -->
+			<img title="{topics.user.username}" class="avatar avatar-sm not-responsive" src="{topics.user.picture}" />
+			<!-- ELSE -->
+			<div class="avatar avatar-sm not-responsive" style="background-color: {topics.user.icon:bgColor};">{topics.user.icon:text}</div>
+			<!-- ENDIF topics.user.picture -->
+
 			<strong><a href="{relative_path}/topic/{topics.slug}">{topics.title}</a></strong>
 			<br /><span>by {topics.user.username}</span><br />
 			
