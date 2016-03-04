@@ -8,6 +8,7 @@
         Sockets = module.parent.require('./socket.io/index'),
         topics = module.parent.require('./topics.js'),
         db = module.parent.require('./database.js'),
+		translator = module.parent.require('../public/src/modules/translator'),
         app;
 
     function getFeaturedTopics(uid, data, callback) {
@@ -68,6 +69,38 @@
 		});
 	};
 
+	Plugin.renderFeaturedTopicsCards = function(widget, callback) {
+		getFeaturedTopics(widget.uid, null, function(err, featuredTopics) {
+			async.each(featuredTopics, function(topic, next) {
+				topics.getTopicPosts(topic.tid, 'tid:' + topic.tid + ':posts', 0, 4, widget.uid, true, function(err, posts) {
+					topic.posts = posts;
+					next(err);
+				});
+			}, function(err) {
+				app.render('widgets/featured-topics-cards', {topics:featuredTopics}, callback);
+			});
+
+		});
+	};
+
+	Plugin.renderFeaturedTopicsList = function(widget, callback) {
+		getFeaturedTopics(widget.uid, null, function(err, featuredTopics) {
+			async.each(featuredTopics, function(topic, next) {
+				topics.getTopicPosts(topic.tid, 'tid:' + topic.tid + ':posts', 0, 4, widget.uid, true, function(err, posts) {
+					topic.posts = posts;
+					next(err);
+				});
+			}, function(err) {
+				app.render('widgets/featured-topics-list', {topics:featuredTopics}, function(err, html) {
+					translator.translate(html, function(translatedHTML) {
+						callback(err, translatedHTML);
+					});
+				});
+			});
+
+		});
+	};
+
 	Plugin.addThreadTools = function(data, callback) {
 		data.tools.push({
 			"title": "Feature this thread",
@@ -90,6 +123,18 @@
 				widget: "featuredTopics4x1",
 				name: "Featured Topics 4x1",
 				description: "List of featured topics",
+				content: "<small>Use Thread Tools in a topic to feature it.</small>"
+			},
+			{
+				widget: "featuredTopicsCards",
+				name: "Featured Topics Cards",
+				description: "Horizontal cards with topics",
+				content: "<small>Use Thread Tools in a topic to feature it.</small>"
+			},
+			{
+				widget: "featuredTopicsList",
+				name: "Featured Topics List",
+				description: "Lists featured topics like a category",
 				content: "<small>Use Thread Tools in a topic to feature it.</small>"
 			}
 		]);

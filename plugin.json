@@ -19,6 +19,12 @@
 		},
 		{
 			"hook": "filter:widget.render:featuredTopicsSidebar", "method": "renderFeaturedTopicsSidebar"
+		},
+		{
+			"hook": "filter:widget.render:featuredTopicsCards", "method": "renderFeaturedTopicsCards"
+		},
+		{
+			"hook": "filter:widget.render:featuredTopicsList", "method": "renderFeaturedTopicsList"
 		}
 	],
 	"staticDir": "./public",
