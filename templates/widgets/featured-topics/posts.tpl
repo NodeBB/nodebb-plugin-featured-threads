@@ -10,7 +10,7 @@
 					</p>
 					<span class="pull-right">
 						<a href="topic/{topics.slug}/{topics.posts.index}">posted</a>
-						<span class="timeago" title="{topics.posts.relativeTime}"></span>
+						<span class="timeago" title="{topics.posts.timestampISO}"></span>
 					</span>
 				</div>
 				<!-- END posts -->

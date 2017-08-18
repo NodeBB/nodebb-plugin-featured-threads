@@ -11,8 +11,8 @@
 
 			<strong><a href="{relative_path}/topic/{topics.slug}">{topics.title}</a></strong>
 			<br /><span>by {topics.user.username}</span><br />
-			
-			<span class="pull-right">posted <span class="timeago" title="{topics.relativeTime}"></span></span>
+
+			<span class="pull-right">posted <span class="timeago" title="{topics.timestampISO}"></span></span>
 		</li>
 		<!-- END topics -->
 	</ul>
