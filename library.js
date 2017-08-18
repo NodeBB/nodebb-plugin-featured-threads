@@ -4,10 +4,12 @@
 	var Plugin = {};
 
 	var async = module.parent.require('async'),
+		nconf = module.parent.require('nconf'),
 		SocketTopics = module.parent.require('./socket.io/topics'),
         Sockets = module.parent.require('./socket.io/index'),
         topics = module.parent.require('./topics.js'),
         db = module.parent.require('./database.js'),
+
         app;
 
     function getFeaturedTopics(uid, data, callback) {
@@ -50,7 +52,10 @@
 
     Plugin.renderFeaturedTopicsSidebar = function(widget, callback) {
 		getFeaturedTopics(widget.uid, null, function(err, featuredTopics) {
-			app.render('widgets/featured-topics-sidebar', {topics:featuredTopics}, callback);
+			app.render('widgets/featured-topics-sidebar', {
+				topics: featuredTopics,
+				relative_path: nconf.get('relative_path')
+			}, callback);
 		});
 	};
 
@@ -62,7 +67,10 @@
 					next(err);
 				});
 			}, function(err) {
-				app.render('widgets/featured-topics-4x1', {topics:featuredTopics}, callback);
+				app.render('widgets/featured-topics-4x1', {
+					topics: featuredTopics,
+					relative_path: nconf.get('relative_path')
+				}, callback);
 			});
 
 		});
