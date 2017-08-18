@@ -24,6 +24,7 @@
 	"staticDir": "./public",
 	"templates": "./templates",
 	"scripts": [
+		"../../public/vendor/jquery/js/jquery-ui-1.10.4.custom.js",
 		"public/lib/main.js"
 	],
 	"less": [
