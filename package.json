@@ -1,6 +1,6 @@
 {
   "name": "nodebb-plugin-featured-threads",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "nbbpm": {
     "compatibility": "^1.0.0"
   },
