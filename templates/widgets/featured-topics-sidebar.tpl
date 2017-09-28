@@ -17,6 +17,3 @@
 		<!-- END topics -->
 	</ul>
 </div>
-<script type="text/javascript">
-$('span.timeago').timeago();
-</script>
