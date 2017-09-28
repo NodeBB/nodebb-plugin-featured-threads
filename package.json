@@ -2,7 +2,7 @@
   "name": "nodebb-plugin-featured-threads",
   "version": "0.1.7",
   "nbbpm": {
-    "compatibility": "^1.0.0"
+    "compatibility": "^1.6.0"
   },
   "description": "Featured Threads & Widget for NodeBB",
   "main": "library.js",
