@@ -7,19 +7,21 @@ $(window).on('action:ajaxify.end', function(ev, data) {
 				socket.emit('topics.getFeaturedTopics', {tid: ajaxify.data.tid}, function(err, topics) {
 					if (err) return console.log(err);
 
-					bootbox.confirm(templates.parse(featuredTpl, {topics:topics}), function(confirm) {
-						var tids = [];
-						$('.featured-topic').each(function(i) {
-							tids.push(this.getAttribute('data-tid'));
-						});
-
-						socket.emit('topics.setFeaturedTopics', {tids: tids});
-					}).on("shown.bs.modal", function() {
-						$('span.timeago').timeago();
-						$('#sort-featured').sortable().disableSelection();
-
-						$('.delete-featured').on('click', function() {
-							$(this).parents('.panel').remove();
+					templates.parse(featuredTpl, {topics:topics}, function(tpl) {
+						bootbox.confirm(tpl, function(confirm) {
+							var tids = [];
+							$('.featured-topic').each(function(i) {
+								tids.push(this.getAttribute('data-tid'));
+							});
+	
+							socket.emit('topics.setFeaturedTopics', {tids: tids});
+						}).on("shown.bs.modal", function() {
+							$('span.timeago').timeago();
+							$('#sort-featured').sortable().disableSelection();
+	
+							$('.delete-featured').on('click', function() {
+								$(this).parents('.panel').remove();
+							});
 						});
 					});
 				});
