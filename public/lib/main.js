@@ -9,7 +9,6 @@ $(window).on('action:ajaxify.end', function(ev, data) {
 				}
 
 				templates.parse('modals/sort-featured-topics', {topics:topics}, function(tpl) {
-					console.log(topics);
 					bootbox.confirm(tpl, function(confirm) {
 						var tids = [];
 						$('.featured-topic').each(function(i) {
