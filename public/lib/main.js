@@ -9,6 +9,7 @@ $(window).on('action:ajaxify.end', function(ev, data) {
 				}
 
 				templates.parse('modals/sort-featured-topics', {topics:topics}, function(tpl) {
+					console.log(topics);
 					bootbox.confirm(tpl, function(confirm) {
 						var tids = [];
 						$('.featured-topic').each(function(i) {
@@ -17,11 +18,13 @@ $(window).on('action:ajaxify.end', function(ev, data) {
 
 						socket.emit('topics.setFeaturedTopics', {tids: tids});
 					}).on("shown.bs.modal", function() {
-						$('span.timeago').timeago();
-						$('#sort-featured').sortable().disableSelection();
-
-						$('.delete-featured').on('click', function() {
-							$(this).parents('.panel').remove();
+						app.loadJQueryUI(function() {
+							$('span.timeago').timeago();
+							$('#sort-featured').sortable().disableSelection();
+	
+							$('.delete-featured').on('click', function() {
+								$(this).parents('.panel').remove();
+							});
 						});
 					});
 				});
