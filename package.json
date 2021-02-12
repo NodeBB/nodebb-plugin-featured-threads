@@ -2,7 +2,7 @@
   "name": "nodebb-plugin-featured-threads",
   "version": "0.2.1",
   "nbbpm": {
-    "compatibility": "^1.6.0"
+    "compatibility": "^1.16.0"
   },
   "description": "Featured Threads & Widget for NodeBB",
   "main": "library.js",
@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/psychobunny/nodebb-plugin-featured-threads"
+    "url": "https://github.com/NodeBB/nodebb-plugin-featured-threads/issues"
   },
   "keywords": [
     "nodebb",
@@ -27,10 +27,19 @@
   },
   "license": "BSD-2-Clause",
   "bugs": {
-    "url": "https://github.com/psychobunny/nodebb-plugin-featured-threads/issues"
+    "url": "https://github.com/NodeBB/nodebb-plugin-featured-threads/issues"
   },
   "readme": "",
   "readmeFilename": "README.md",
+  "devDependencies": {
+    "@commitlint/cli": "11.0.0",
+    "@commitlint/config-angular": "11.0.0",
+    "eslint": "7.19.0",
+    "eslint-config-airbnb-base": "14.2.1",
+    "eslint-plugin-import": "2.22.1",
+    "husky": "5.0.9",
+    "lint-staged": "10.5.4"
+  },
   "_id": "nodebb-plugin-featured-threads@0.0.1",
   "_from": "nodebb-plugin-featured-threads@~0.0.1"
 }
