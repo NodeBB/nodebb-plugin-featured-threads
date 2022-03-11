@@ -1,6 +1,6 @@
 {
   "name": "nodebb-plugin-featured-threads",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "nbbpm": {
     "compatibility": "^1.17.0"
   },
@@ -40,6 +40,5 @@
     "husky": "5.0.9",
     "lint-staged": "10.5.4"
   },
-  "_id": "nodebb-plugin-featured-threads@0.0.1",
   "_from": "nodebb-plugin-featured-threads@~0.0.1"
 }
