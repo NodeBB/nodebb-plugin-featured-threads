@@ -3,7 +3,6 @@
 
 const Plugin = module.exports;
 
-const async = require.main.require('async');
 const nconf = require.main.require('nconf');
 
 const db = require.main.require('./src/database');
@@ -34,12 +33,7 @@ Plugin.init = async (params) => {
 			throw new Error('[[error:no-privileges]]');
 		}
 		await db.delete('featured:tids');
-
-		// TODO: use db.listAppend with array once core has it
-		// await db.listAppend('featured:tids', data.tids);
-		await async.eachSeries(data.tids, async (tid) => {
-			await db.listAppend('featured:tids', tid);
-		});
+		await db.listAppend('featured:tids', data.tids);
 	};
 };
 
@@ -66,7 +60,7 @@ async function getFeaturedTopics(uid, data) {
 
 	let tids = await db.getListRange('featured:tids', 0, -1);
 	if (data.tid) {
-		if (tids.indexOf(data.tid) === -1) {
+		if (!tids.includes(data.tid)) {
 			await db.listAppend('featured:tids', data.tid);
 			tids.push(data.tid);
 		}
