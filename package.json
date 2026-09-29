@@ -2,11 +2,12 @@
   "name": "nodebb-plugin-featured-threads",
   "version": "1.0.1",
   "nbbpm": {
-    "compatibility": "^1.17.0"
+    "compatibility": "^4.15.0"
   },
   "description": "Featured Threads & Widget for NodeBB",
   "main": "library.js",
   "scripts": {
+    "lint": "eslint .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -34,9 +35,8 @@
   "devDependencies": {
     "@commitlint/cli": "11.0.0",
     "@commitlint/config-angular": "11.0.0",
-    "eslint": "8.10.0",
-    "eslint-config-nodebb": "0.1.1",
-    "eslint-plugin-import": "2.25.4",
+    "eslint": "10.11.0",
+    "eslint-config-nodebb": "^2.0.2",
     "husky": "5.0.9",
     "lint-staged": "10.5.4"
   },

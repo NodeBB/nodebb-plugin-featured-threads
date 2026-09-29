@@ -1,6 +1,5 @@
 'use strict';
 
-/* global $, window, ajaxify, socket, app, */
 $(window).on('action:ajaxify.end', () => {
 	if (ajaxify.data.template.topic) {
 		$('.topic').on('click', '.thread-tools .mark-featured', () => {
@@ -27,10 +26,10 @@ $(window).on('action:ajaxify.end', () => {
 						}).on('shown.bs.modal', () => {
 							app.loadJQueryUI(() => {
 								$('span.timeago').timeago();
-								$('#sort-featured').sortable().disableSelection();
+								$('#sort-featured').sortable();
 
 								$('.delete-featured').on('click', function () {
-									$(this).parents('.panel').remove();
+									$(this).parents('.card').remove();
 								});
 							});
 						});

@@ -1,35 +1,40 @@
 <div class="row featured-threads" itemscope itemtype="http://www.schema.org/ItemList">
-	<!-- BEGIN topics -->
-	<div component="categories/category" class="<!-- IF topics.category.class -->{topics.category.class}<!-- ELSE -->col-md-3 col-sm-6 col-xs-12<!-- ENDIF topics.category.class --> category-item" data-cid="{topics.category.cid}" data-numRecentReplies="{topics.category.numRecentReplies}">
-		<meta itemprop="name" content="{topics.category.name}">
-
-		<div class="category-icon">
-			<a style="color: {topics.category.color};" href="{relative_path}/topic/{topics.slug}" itemprop="url">
-				<div
-					id="category-{topics.category.cid}" class="category-header category-header-image-{topics.category.imageClass}"
-					style="
-						<!-- IF topics.category.backgroundImage -->background-image: url({topics.category.backgroundImage});<!-- ENDIF topics.category.backgroundImage -->
-						<!-- IF topics.category.bgColor -->background-color: {topics.category.bgColor};<!-- ENDIF topics.category.bgColor -->
-						color: {topics.category.color};
-					"
-				>
-					<!-- IF topics.category.icon -->
-					<div><i class="fa {topics.category.icon} fa-4x hidden-xs"></i></div>
-					<!-- ENDIF topics.category.icon -->
+	{{{ each topics }}}
+	<div class="{{{ if !carouselMode }}}col-lg-3 col-sm-6 col-12 overflow-hidden{{{ end }}} recent-card-container {{{ if ./showThumbnailInBackground }}}thumb-bg{{{ end }}}" data-cid="{./category.cid}">
+		<div class="recent-card card card-header border-0 rounded mb-2 p-0 position-relative d-inline-flex {{{ if !carouselMode }}}w-100{{{ end }}}" style="{{{ if ./showThumbnailInBackground }}}background-image: url('{./thumbs.0.url}');{{{ end }}}{{{ if carouselMode }}}width: 312px;{{{ end }}}">
+			<div class="glass-layer rounded p-2">
+				<div class="recent-card-body h-100 overflow-hidden">
+					<div>
+						<h6 class="topic-title mt-0 text-truncate"><a class="text-reset" href="{config.relative_path}/topic/{./slug}{{{ if ./bookmark }}}/{./bookmark}{{{ end }}}" title="{./title}">{./title}</a></h6>
+					</div>
+					<div class="d-flex flex-column gap-1">
+						<div class="d-flex gap-2 align-items-center">
+							<a class="text-decoration-none" href="{config.relative_path}/user/{./teaser.user.userslug}">{{buildAvatar(./teaser.user, "24px", true, "avatar-tooltip")}}</a>
+							<a class="flex-shrink-1 text-xs text-truncate text-reset" href="{config.relative_path}/user/{./teaser.user.userslug}">{./teaser.user.displayname}</a>
+							<span class="flex-shrink-0 timeago text-muted text-xs" title="{./teaser.timestampISO}"></span>
+						</div>
+						<div class="text-sm text-break line-clamp-5" style="transform: rotate(0);">
+							<a href="{config.relative_path}/topic/{./slug}{{{ if ./bookmark }}}/{./bookmark}{{{ end }}}" class="stretched-link"></a>
+							<div class="teaser-content">{{./teaser.content}}</div>
+						</div>
+					</div>
 				</div>
-			</a>
 
-			<div class="category-box">
-				<div class="category-info" style="color: {topics.category.color};">
-					<a href="{relative_path}/topic/{topics.slug}" itemprop="url" style="color: {topics.category.color};">
-						<h4><!-- IF topics.category.icon --><i class="fa {topics.category.icon} visible-xs-inline"></i> <!-- ENDIF topics.category.icon -->{topics.title}</h4>
-						<div class="description" itemprop="description"><strong>{topics.category.name}</strong> <span class="timeago" title="{topics.timestampISO}"></span></div>
-					</a>
+				<div class="d-flex mt-3 align-items-center gap-2">
+					<div class="d-flex category-item text-truncate">
+						{{buildCategoryLabel(./category, "a", "border")}}
+					</div>
+					<div class="badge text-body border border-gray-300 stats text-xs">
+						<span title="{formattedNumber(./postcount)}" class="fw-bold">{humanReadableNumber(./postcount)}</span>
+						<span class="text-lowercase fw-normal">{{tx("global:posts")}}</span>
+					</div>
+					<div class="badge text-body border border-gray-300 stats text-xs">
+						<span title="{formattedNumber(./votes)}" class="fw-bold">{humanReadableNumber(./votes)}</span>
+						<span class="text-lowercase fw-normal">{{tx("global:votes")}}</span>
+					</div>
 				</div>
 			</div>
-
-			<span class="post-count" style="color: {topics.category.color};">{topics.postcount}</span>
 		</div>
 	</div>
-	<!-- END topics -->
+	{{{end}}}
 </div>

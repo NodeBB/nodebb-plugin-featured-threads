@@ -1,0 +1,15 @@
+.featured-threads {
+	.teaser-content {
+		h1, h2, h3, h4, h5, h6 {
+			font-size: 1rem;
+			margin-bottom: 0;
+		}
+		height: 7.5em;
+		> p {
+			margin-bottom: 0;
+		}
+		img {
+			border-radius: $border-radius-sm;
+		}
+	}
+}

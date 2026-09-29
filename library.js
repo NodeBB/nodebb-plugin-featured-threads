@@ -3,13 +3,13 @@
 
 const Plugin = module.exports;
 
-const nconf = require.main.require('nconf');
+const nconf = nodebb.require('nconf');
 
-const db = require.main.require('./src/database');
-const privileges = require.main.require('./src/privileges');
-const SocketTopics = require.main.require('./src/socket.io/topics');
-const topics = require.main.require('./src/topics');
-const user = require.main.require('./src/user');
+const db = nodebb.require('./src/database');
+const privileges = nodebb.require('./src/privileges');
+const SocketTopics = nodebb.require('./src/socket.io/topics');
+const topics = nodebb.require('./src/topics');
+const user = nodebb.require('./src/user');
 
 let app;
 
@@ -60,7 +60,9 @@ async function getFeaturedTopics(uid, data) {
 
 	let tids = await db.getListRange('featured:tids', 0, -1);
 	if (data.tid) {
-		if (!tids.includes(data.tid)) {
+		const cid = await topics.getTopicField(data.tid, 'cid');
+		const allowed = await privileges.categories.isAdminOrMod(cid, uid);
+		if (allowed && !tids.includes(String(data.tid))) {
 			await db.listAppend('featured:tids', data.tid);
 			tids.push(data.tid);
 		}
